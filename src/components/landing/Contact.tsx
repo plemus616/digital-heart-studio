@@ -1,23 +1,67 @@
 import { useState } from "react";
 import { Mail, Phone, Send, MessageCircle, Clock, Sparkles } from "lucide-react";
 import { toast } from "sonner";
+import { Slider } from "@/components/ui/slider";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     projectType: "",
-    budget: "",
     message: "",
   });
 
+  const [budget, setBudget] = useState([500]);
   const [activeStep, setActiveStep] = useState(1);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast.success("¡Mensaje enviado! Te contactaremos pronto.");
-    setFormData({ name: "", email: "", projectType: "", budget: "", message: "" });
-    setActiveStep(1);
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: "d4e8ac31-e1c8-4690-bcff-5648775b124f", // Reemplazar con tu access key de web3forms.com
+          name: formData.name,
+          email: formData.email,
+          message: `
+Tipo de Proyecto: ${projectTypes.find(p => p.id === formData.projectType)?.label || 'No especificado'}
+Presupuesto: ${formatBudget(budget[0])}
+
+Mensaje:
+${formData.message}
+          `.trim(),
+          subject: `Nuevo contacto de ${formData.name} - GCloud`,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        toast.success("¡Mensaje enviado! Te contactaremos pronto.");
+        setFormData({ name: "", email: "", projectType: "", message: "" });
+        setBudget([500]);
+        setActiveStep(1);
+      } else {
+        toast.error("Hubo un error. Por favor intenta de nuevo.");
+      }
+    } catch (error) {
+      toast.error("Error al enviar el mensaje. Verifica tu conexión.");
+      console.error("Error:", error);
+    }
+  };
+
+  const formatBudget = (value: number) => {
+    return new Intl.NumberFormat('es-GT', {
+      style: 'currency',
+      currency: 'GTQ',
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+    }).format(value);
   };
 
   const projectTypes = [
@@ -25,13 +69,6 @@ const Contact = () => {
     { id: "ecommerce", label: "E-commerce", icon: "🛒" },
     { id: "app", label: "Aplicación Web", icon: "📱" },
     { id: "redesign", label: "Rediseño", icon: "✨" },
-  ];
-
-  const budgetRanges = [
-    { id: "starter", label: "Q5,000 - Q15,000", desc: "Proyecto inicial" },
-    { id: "growth", label: "Q15,000 - Q40,000", desc: "Negocio en crecimiento" },
-    { id: "enterprise", label: "Q40,000+", desc: "Solución empresarial" },
-    { id: "talk", label: "Conversemos", desc: "No estoy seguro" },
   ];
 
   return (
@@ -59,18 +96,18 @@ const Contact = () => {
           {/* Quick contact pills */}
           <div className="flex flex-wrap justify-center gap-4 mb-12">
             <a
-              href="mailto:hola@gcloud.com.gt"
+              href="mailto:contacto@gcloud.com.gt"
               className="group flex items-center gap-3 px-5 py-3 glass rounded-full hover:bg-primary/10 transition-all"
             >
               <Mail className="w-5 h-5 text-primary" />
-              <span className="text-sm">hola@gcloud.com.gt</span>
+              <span className="text-sm">contacto@gcloud.com.gt</span>
             </a>
             <a
-              href="tel:+502XXXXXXXX"
+              href="tel:+50245723733"
               className="group flex items-center gap-3 px-5 py-3 glass rounded-full hover:bg-primary/10 transition-all"
             >
               <Phone className="w-5 h-5 text-primary" />
-              <span className="text-sm">+502 XXXX XXXX</span>
+              <span className="text-sm">+502 4572-3733</span>
             </a>
             <div className="flex items-center gap-3 px-5 py-3 glass rounded-full">
               <Clock className="w-5 h-5 text-accent" />
@@ -130,37 +167,63 @@ const Contact = () => {
               <div className="space-y-8 animate-fade-up">
                 <div className="text-center mb-8">
                   <h3 className="text-2xl font-semibold mb-2">¿Cuál es tu presupuesto?</h3>
-                  <p className="text-muted-foreground">Esto nos ayuda a proponerte la mejor solución</p>
+                  <p className="text-muted-foreground">Ajusta el slider según tu presupuesto estimado</p>
                 </div>
 
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                  {budgetRanges.map((range) => (
+                <div className="max-w-2xl mx-auto space-y-8">
+                  {/* Budget Display */}
+                  <div className="text-center">
+                    <div className="inline-flex items-center gap-2 px-6 py-4 rounded-2xl glass border-2 border-primary/50 bg-primary/5">
+                      <span className="text-4xl font-bold text-gradient">
+                        {formatBudget(budget[0])}
+                      </span>
+                    </div>
+                    <p className="text-sm text-muted-foreground mt-3">
+                      {budget[0] < 3000
+                        ? "Proyecto básico - Landing page o sitio simple"
+                        : budget[0] < 8000
+                        ? "Proyecto estándar - Web con más funcionalidades"
+                        : budget[0] < 15000
+                        ? "Proyecto avanzado - Soluciones personalizadas"
+                        : "Proyecto premium - Full personalización"}
+                    </p>
+                  </div>
+
+                  {/* Slider */}
+                  <div className="px-4">
+                    <Slider
+                      value={budget}
+                      onValueChange={setBudget}
+                      min={500}
+                      max={20000}
+                      step={500}
+                      className="w-full"
+                    />
+                    <div className="flex justify-between text-xs text-muted-foreground mt-3">
+                      <span>Q500</span>
+                      <span>Q20,000+</span>
+                    </div>
+                  </div>
+
+                  {/* Action Buttons */}
+                  <div className="flex items-center justify-between pt-4">
                     <button
-                      key={range.id}
                       type="button"
-                      onClick={() => {
-                        setFormData({ ...formData, budget: range.id });
-                        setActiveStep(3);
-                      }}
-                      className={`group p-5 rounded-2xl border-2 transition-all duration-300 hover:border-primary hover:bg-primary/5 text-left ${
-                        formData.budget === range.id 
-                          ? "border-primary bg-primary/10" 
-                          : "border-border"
-                      }`}
+                      onClick={() => setActiveStep(1)}
+                      className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                     >
-                      <div className="font-semibold text-sm mb-1">{range.label}</div>
-                      <div className="text-xs text-muted-foreground">{range.desc}</div>
+                      ← Volver
                     </button>
-                  ))}
-                </div>
 
-                <button
-                  type="button"
-                  onClick={() => setActiveStep(1)}
-                  className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  ← Volver
-                </button>
+                    <button
+                      type="button"
+                      onClick={() => setActiveStep(3)}
+                      className="px-8 py-3 rounded-xl bg-gradient-to-r from-primary to-accent text-primary-foreground font-semibold hover:opacity-90 transition-opacity"
+                    >
+                      Continuar →
+                    </button>
+                  </div>
+                </div>
               </div>
             )}
 
@@ -243,10 +306,6 @@ const Contact = () => {
             )}
           </form>
 
-          {/* Trust note */}
-          <p className="text-center text-sm text-muted-foreground mt-8">
-            Sin compromisos. Sin spam. Solo conversación honesta sobre tu proyecto.
-          </p>
         </div>
       </div>
     </section>

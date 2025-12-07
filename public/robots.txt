@@ -1,14 +1,46 @@
+# Robots.txt para gcloud.com.gt
+# Optimizado para SEO
+
+# Permitir a todos los bots
+User-agent: *
+Allow: /
+
+# Crawl-delay para bots específicos
 User-agent: Googlebot
 Allow: /
+Crawl-delay: 0
 
 User-agent: Bingbot
 Allow: /
+Crawl-delay: 0
 
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+# Bots de redes sociales
 User-agent: Twitterbot
 Allow: /
 
 User-agent: facebookexternalhit
 Allow: /
 
-User-agent: *
+User-agent: LinkedInBot
 Allow: /
+
+User-agent: Pinterestbot
+Allow: /
+
+User-agent: WhatsApp
+Allow: /
+
+# Sitemap
+Sitemap: https://gcloud.com.gt/sitemap.xml
+
+# Host (dominio preferido)
+Host: https://gcloud.com.gt

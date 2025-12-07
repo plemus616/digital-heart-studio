@@ -43,7 +43,7 @@ const About = () => {
             </h2>
             <div className="space-y-4 text-muted-foreground leading-relaxed">
               <p>
-                En <strong className="text-foreground">gcloud.com.gt</strong> creemos que cada negocio 
+                En <strong className="text-foreground">GCloud</strong> creemos que cada negocio
                 tiene una historia única que merece ser contada de manera extraordinaria.
               </p>
               <p>

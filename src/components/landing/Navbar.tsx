@@ -16,13 +16,14 @@ const Navbar = () => {
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-2 group">
-            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center font-bold text-primary-foreground text-xl transition-transform group-hover:scale-110">
-              G
-            </div>
-            <span className="font-bold text-xl tracking-tight">
-              <span className="text-gradient">gcloud</span>
-              <span className="text-muted-foreground">.com.gt</span>
+          <a href="#" className="flex items-center gap-3 group">
+            <img
+              src="/logo.png"
+              alt="GCloud"
+              className="w-10 h-10 object-contain transition-transform group-hover:scale-110"
+            />
+            <span className="font-bold text-xl tracking-tight text-gradient">
+              GCloud
             </span>
           </a>
 

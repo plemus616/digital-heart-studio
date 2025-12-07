@@ -25,19 +25,9 @@ const Hero = () => {
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
-          {/* Badge */}
-          <div 
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-8 opacity-0 animate-fade-up"
-            style={{ animationDelay: "0.1s" }}
-          >
-            <Sparkles className="w-4 h-4 text-primary" />
-            <span className="text-sm text-muted-foreground">
-              Transformamos ideas en experiencias digitales
-            </span>
-          </div>
 
           {/* Headline */}
-          <h1 
+          <h1
             className="text-4xl sm:text-5xl md:text-7xl font-bold leading-tight mb-6 opacity-0 animate-fade-up"
             style={{ animationDelay: "0.2s" }}
           >
@@ -53,8 +43,7 @@ const Hero = () => {
             style={{ animationDelay: "0.3s" }}
           >
             Creamos páginas web únicas, hosting confiable y soluciones personalizadas 
-            para llevar tu negocio al siguiente nivel. Sin plantillas genéricas, 
-            solo diseño con alma.
+            para llevar tu negocio al siguiente nivel.
           </p>
 
           {/* CTA Buttons */}

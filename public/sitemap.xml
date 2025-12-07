@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+                            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+  <!-- Página Principal -->
+  <url>
+    <loc>https://gcloud.com.gt</loc>
+    <lastmod>2025-12-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://gcloud.com.gt/og-image.jpg</image:loc>
+      <image:title>gcloud.com.gt - Diseño Web y Soluciones Digitales</image:title>
+      <image:caption>Creamos páginas web únicas y soluciones personalizadas en Guatemala</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://gcloud.com.gt/logo.png</image:loc>
+      <image:title>Logo gcloud.com.gt</image:title>
+    </image:image>
+  </url>
+
+  <!-- Sección de Servicios -->
+  <url>
+    <loc>https://gcloud.com.gt/#servicios</loc>
+    <lastmod>2025-12-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Sección de Nosotros -->
+  <url>
+    <loc>https://gcloud.com.gt/#nosotros</loc>
+    <lastmod>2025-12-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Sección de Contacto -->
+  <url>
+    <loc>https://gcloud.com.gt/#contacto</loc>
+    <lastmod>2025-12-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+</urlset>

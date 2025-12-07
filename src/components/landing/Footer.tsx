@@ -8,13 +8,14 @@ const Footer = () => {
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center font-bold text-primary-foreground">
-              G
-            </div>
-            <span className="font-bold text-lg">
-              <span className="text-gradient">gcloud</span>
-              <span className="text-muted-foreground">.com.gt</span>
+          <a href="#" className="flex items-center gap-3">
+            <img
+              src="/logo.png"
+              alt="GCloud"
+              className="w-8 h-8 object-contain"
+            />
+            <span className="font-bold text-lg text-gradient">
+              GCloud
             </span>
           </a>
 
@@ -36,11 +37,7 @@ const Footer = () => {
 
           {/* Copyright */}
           <div className="flex items-center gap-1 text-sm text-muted-foreground">
-            <span>© {currentYear} gcloud.com.gt</span>
-            <span className="mx-2">·</span>
-            <span className="flex items-center gap-1">
-              Hecho con <Heart className="w-4 h-4 text-primary fill-primary" /> en Guatemala
-            </span>
+            <span>© {currentYear} GCloud</span>
           </div>
         </div>
       </div>
