@@ -103,11 +103,11 @@ ${formData.message}
               <span className="text-sm">contacto@gcloud.com.gt</span>
             </a>
             <a
-              href="tel:+50245723733"
+              href="tel:+50247704845"
               className="group flex items-center gap-3 px-5 py-3 glass rounded-full hover:bg-primary/10 transition-all"
             >
               <Phone className="w-5 h-5 text-primary" />
-              <span className="text-sm">+502 4572-3733</span>
+              <span className="text-sm">+502 4770 4845</span>
             </a>
             <div className="flex items-center gap-3 px-5 py-3 glass rounded-full">
               <Clock className="w-5 h-5 text-accent" />
